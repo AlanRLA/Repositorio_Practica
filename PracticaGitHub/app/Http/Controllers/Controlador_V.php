@@ -14,6 +14,6 @@ class Controlador_V extends Controller
     return view('Tabla');
   }
   public function Procesador(Validador_F $req){
-    return 'Procesando pedido';
+    return redirect('Formulario')->with('Succesful', 'Envio correcto');
   }
 }
