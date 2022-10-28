@@ -1,58 +1,50 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('Plantilla')
 
-        <title>Form</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      
-        <!-- Styles -->
-        <style>
-        </style>
-
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-    </head>
-    <body class="antialiased">
+@section('contenido')
 
         <div class="container mt-4 col-md-4">
 
             <H3 class="text-center">Registrar pedido de comida</H3>
-           
-            <form action="" class="border">
+            @if ($errors->any())
+
+            @foreach ($errors->all() as $error)
+         
+            <div class="alert alert-danger alert-dimissible fade show" role="alert">
+             <strong> {{$error}} </strong>
+             <button type="button" class="btn-close" data-bs-dimiss="alert" aria-label="Close"></button>
+           </div>
+
+            @endforeach
+
+            @endif
+
+            <form action="GuardarPedido" class="border" method="POST">
+                @csrf
                 <div class="mt-4">
                     <div><Label  class="form-control">Platillo</Label></div>
                     <input class="form-control" type="text" name="txtPlatillo" placeholder="Ingresar platillo">
+                    <p class="text-primary"> {{$errors->first('txtPlatillo')}}</p>
                 </div>
 
                 <div class="m">
                     <div><Label  class="form">Notas</Label></div>
-                    <input class="form-control" type="text" name="txtNota" placeholder="Ingresar platillo">
+                    <input class="form-control" type="text" name="txtNota" placeholder="Ingresar notas">
+                    <p class="text-primary"> {{$errors->first('txtNota')}}</p>
                 </div>
 
                 <div class="">
                     <div><Label  class="form">Cantidad</Label></div>
-                    <input class="form-control" type="number" name="txtCantidad" placeholder="Ingresar platillo">
+                    <input class="form-control" type="number" name="txtCantidad" placeholder="Ingresar cantidad">
+                    <p class="text-primary"> {{$errors->first('NmCantidad')}}</p>
                 </div>
 
                 <div class="mb-4">
-                    <div><Label  class="form">Platillo</Label></div>
-                    <input class="form-control" type="number" name="txtCantidad" placeholder="Ingresar platillo">
+                    <div><Label  class="form">Mesa</Label></div>
+                    <input class="form-control" type="number" name="txtMesa" placeholder="Indicar mesa">
+                    <p class="text-primary"> {{$errors->first('NmMesa')}}</p>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button class="btn btn-primary" type="submit" name="btnEnviar" >Enviar</button>
 
             </form>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    </body>
-</html>
+ @stop

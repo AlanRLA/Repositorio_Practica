@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controlador_V;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route:: view('Formulario','Formulario');
+Route:: get(('Formulario'), [Controlador_V::class, 'ShowFormulario'])->name('Vform');
 
-Route:: view('Tabla','Tabla');
+Route:: get(('Tabla'), [Controlador_V::class, 'ShowTabla'])->name('Vtable');
+
+Route::post('GuardarPedido', [Controlador_V::class, 'Procesador'])->name('Save');
